@@ -77,6 +77,6 @@ Este trabajo está bajo [Licencia Creative Commons CC BY-NC-SA 4.0](LICENSE.md).
 - Mantener esta misma licencia
 
 ## 🌍 CONTACTO DE EMERGENCIA
-📧 Email: alertas@chipionaemergencias.org  
-📞 Teléfono: +34 956 37 00 00  
+📧 Email: "ia.mechmind@gmail.com"  
+📞 Teléfono: +34 644 17 85 10
 📍 Centro de Operaciones: Avda. del Mar, 12 (Chipiona)
