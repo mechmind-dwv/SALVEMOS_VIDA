@@ -1,4 +1,3 @@
-# monitoring_system.py
 import requests
 from datetime import datetime
 
