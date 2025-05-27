@@ -1,0 +1,12 @@
+name: Security Scan
+on: [push, pull_request]
+
+jobs:
+  bandit-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Bandit
+        uses: PyCQA/bandit@main
+        with:
+          args: "-r ./scripts/ -ll"
