@@ -1,0 +1,23 @@
+# docker-compose-prod.yml
+version: '3.8'
+
+services:
+  monitor:
+    build: ./scripts/monitoreo
+    environment:
+      - API_KEY=${SECRET_KEY}
+    volumes:
+      - ./data:/app/data
+    networks:
+      - alert_net
+
+  web:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    depends_on:
+      - monitor
+
+networks:
+  alert_net:
+    driver: bridge
