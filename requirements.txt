@@ -1,2 +1,2 @@
-Python 3.10+
+Python 3.14.0-beta.3
 django=4.2.21
