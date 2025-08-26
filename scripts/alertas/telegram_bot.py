@@ -34,6 +34,21 @@ def enviar_alerta_telegram(mensaje):
         print(f"❌ Error enviando a Telegram: {e}")
         return False
 
+     def responder_mensajes(mensaje, chat_id):
+    """Responde automáticamente a mensajes comunes"""
+    respuestas = {
+        '/start': '🌊 ¡Hola! Soy el sistema de alertas de Chipiona. Te mantendré informado sobre emergencias.',
+        '/help': '❓ Comandos disponibles:\n/start - Iniciar\n/help - Ayuda\n/estado - Estado del sistema\n/alerta - Última alerta',
+        '/estado': '✅ Sistema operativo. Monitoreando 24/7 la costa de Cádiz.',
+        'hola': '👋 ¡Hola! ¿En qué puedo ayudarte hoy?',
+        'gracias': '😊 ¡De nada! Estoy aquí para servir a la comunidad.'
+    }
+    
+    if mensaje.lower() in respuestas:
+        enviar_alerta_telegram(respuestas[mensaje.lower()], chat_id)
+    else:
+        enviar_alerta_telegram('🤖 No entiendo ese comando. Usa /help para ver opciones.', chat_id)
+
 if __name__ == "__main__":
     if len(sys.argv) > 1:
         mensaje = " ".join(sys.argv[1:])
