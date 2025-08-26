@@ -1,5 +1,4 @@
 # 🌊 CONTRIBUIR A "SALVEMOS VIDAS" - CHIPIONA
-
 ## 📚 DOCUMENTACIÓN DEL SISTEMA
 
 ### Arquitectura Técnica
