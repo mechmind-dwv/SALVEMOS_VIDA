@@ -1,1 +1,9 @@
-
+name: salvemos_vida
+channels:
+  - defaults
+dependencies:
+  - python=3.10
+  - django>=4.2
+  - requests
+  - pandas
+  # Añade aquí otras dependencias
