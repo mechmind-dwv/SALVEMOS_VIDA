@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 # scripts/monitoreo/alert_system.py
-
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 import time
-from data_integrator import DataFetcher
-from datetime import datetime
+import subprocess
+from scripts.monitoreo.data_integrator import DataFetcher
 
 class AlertManager:
     UMBRALES = {
@@ -12,7 +14,7 @@ class AlertManager:
         'nivel_marea': 2.5  # metros
     }
 
-        def check_alertas(self, data):
+    def check_alertas(self, data):
         """Verifica si se superan los umbrales de alerta"""
         alertas = []
         
@@ -48,25 +50,28 @@ def main():
             alertas_activas = manager.check_alertas(datos)
             
             if alertas_activas:
-    print(f"🚨 ALERTA ACTIVADA: {', '.join(alertas_activas)}")
-    print(f"📊 Datos: {datos}")
-    
-    # ✅ ENVIAR ALERTA POR TELEGRAM AUTOMÁTICAMENTE
-    try:
-        from scripts.alertas.telegram_bot import enviar_alerta_telegram
-        mensaje = f"ALERTA {', '.join(alertas_activas)} ACTIVADA. Magnitud: {datos['sismos']['max_magnitud']} | Distancia: {datos['sismos']['ultimo_sismo']['distancia_km']}km"
-        enviar_alerta_telegram(mensaje)
-        print("✅ Alerta enviada por Telegram")
-    except Exception as e:
-        print(f"❌ Error enviando alerta: {e}")
-    
-    # ✅ ACTIVAR PROTOCOLO DE EMERGENCIA
-    try:
-        import subprocess
-        for alerta in alertas_activas:
-            subprocess.run(["./scripts/accion/activar_protocolo.sh", alerta])
-    except Exception as e:
-        print(f"❌ Error activando protocolo: {e}")
+                print(f"🚨 ALERTA ACTIVADA: {', '.join(alertas_activas)}")
+                
+                # Enviar alerta por Telegram
+                try:
+                    from scripts.alertas.telegram_bot import enviar_alerta_telegram
+                    mensaje = f"ALERTA {', '.join(alertas_activas)} ACTIVADA"
+                    enviar_alerta_telegram(mensaje)
+                    print("✅ Alerta enviada por Telegram")
+                except Exception as e:
+                    print(f"❌ Error enviando alerta: {e}")
+                
+                # Activar protocolo de emergencia
+                for alerta in alertas_activas:
+                    try:
+                        subprocess.run(["./scripts/accion/activar_protocolo.sh", alerta])
+                    except Exception as e:
+                        print(f"❌ Error activando protocolo {alerta}: {e}")
+            else:
+                print("✅ Todo normal - Sin alertas")
+            
+            # Esperar 60 segundos entre chequeos
+            time.sleep(60)
             
     except KeyboardInterrupt:
         print("\n🛑 Sistema de alertas detenido manualmente")

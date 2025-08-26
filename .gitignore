@@ -1,6 +1,40 @@
+# Python
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+*.so
+.Python
+
+# Logs
 *.log
+logs/*.log
+
+# Environment
 .env
-*.sqlite3
+.venv
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# System
 .DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+
+# Large data files
+*.csv
+*.jsonl
+*.sqlite3
+
+# Backup files
+*.backup
+*.old
