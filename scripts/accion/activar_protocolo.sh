@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 case $1 in
     "SÍSMICA")
         python -m scripts.alertas.sms_emergencia "+34644178510"  
