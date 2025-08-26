@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: salvemos_vida
+Version: 1.0
+License-File: LICENSE
+Requires-Dist: requests
+Requires-Dist: beautifulsoup4
+Requires-Dist: xmltodict
+Dynamic: license-file
+Dynamic: requires-dist

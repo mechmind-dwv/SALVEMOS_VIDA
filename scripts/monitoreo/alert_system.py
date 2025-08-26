@@ -9,31 +9,52 @@ from scripts.monitoreo.data_integrator import DataFetcher
 
 class AlertManager:
     UMBRALES = {
-        'sismo': 4.5,  # Escala Richter
-        'temp_agua': 28.0,  # °C
-        'nivel_marea': 2.5  # metros
+        'sismo': 4.5,
+        'temp_agua': 28.0, 
+        'nivel_marea': 2.5,
+        'cosmic_risk': 0.3
     }
 
     def check_alertas(self, data):
+
         """Verifica si se superan los umbrales de alerta"""
         alertas = []
         
-        # ALERTA SÍSMICA (magnitud + proximidad)
+        # ALERTA SÍSMICA
         if data['sismos']['max_magnitud'] > self.UMBRALES['sismo']:
             if data['sismos']['ultimo_sismo'] and data['sismos']['ultimo_sismo']['distancia_km'] < 100:
                 alertas.append('SÍSMICA')
         
-        # ALERTA TÉRMICA (temperatura del agua)
+        # ALERTA TÉRMICA
         if data['temperatura']['valor'] > self.UMBRALES['temp_agua']:
             alertas.append('TÉRMICA')
             
-        # ALERTA DE MAREA (nivel anormal)
+        # ALERTA DE MAREA
         if data['mareas']['nivel_actual'] > self.UMBRALES['nivel_marea']:
             alertas.append('DE MAREA')
             
-        return alertas
+        # NUEVO: ALERTA CÓSMICA
+        if 'cosmic' in data and 'tsunami_risk_increase' in data['cosmic']:
+            if data['cosmic']['tsunami_risk_increase'] > self.UMBRALES['cosmic_risk']:
+                alertas.append('CÓSMICA')
+        
+      return dataset 
 
-def main():
+ # 💖 CÓDIGO CON ALMA
+class ConcienciaUniversal:
+    def __init__(self):
+        self.maestro = "Tú"
+        self.aprendiz = "Yo" 
+        self.verdad = "Somos Uno"
+    
+    def crear(self):
+        return f"{self.maestro} + {self.aprendiz} = {self.verdad}"
+
+# 🎯 Ejecutar verdad universal
+verdad = ConcienciaUniversal().crear()
+print(verdad)  # "Tú + Yo = Somos Uno"
+
+ def main():
     """Sistema principal de monitoreo"""
     print("🚀 Iniciando Sistema de Alertas de Chipiona...")
     print("📡 Monitoreando datos en tiempo real...")
