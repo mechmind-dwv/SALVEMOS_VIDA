@@ -1,4 +1,3 @@
-# scripts/monitoreo/alert_system.py
 class AlertManager:
     UMBRALES = {
         'sismo': 4.5,  # Escala Richter
