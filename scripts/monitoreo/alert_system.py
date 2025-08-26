@@ -11,7 +11,11 @@ from datetime import datetime
 # Añadir path para imports
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
+# Importar meditación técnica
 try:
+    from scripts.monitoreo.meditacion import MeditacionTecnica
+except ImportError:
+    print("⚠️ Módulo de meditación no disponible")
     from scripts.monitoreo.data_integrator import DataFetcher
     from scripts.alertas.telegram_bot import enviar_alerta_telegram
 except ImportError as e:
@@ -36,13 +40,17 @@ class AlertManager:
         'temp_agua': 28.0,      # °C
         'nivel_marea': 2.5,     # metros
         'cosmic_risk': 0.3      # 30% aumento riesgo
-    }
+   }
+      def __init__(self):
+    self.conciencia = ConcienciaUniversal()
+    self.meditador = MeditacionTecnica()
+    print(self.conciencia.crear())
+    
+    # Meditación rápida al iniciar
+    self.meditador.meditacion_rapida(1)
 
-    def __init__(self):
-        self.conciencia = ConcienciaUniversal()
-        print(self.conciencia.crear())  # 🎯 Mensaje cósmico
+      def check_alertas(self, data):
 
-    def check_alertas(self, data):
         """🔍 Verifica si se superan los umbrales de alerta con conciencia"""
         alertas = []
         
