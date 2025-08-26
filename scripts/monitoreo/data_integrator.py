@@ -15,7 +15,7 @@ class DataFetcher:
     }
 
     def fetch_data(self):
-    """Obtiene datos críticos de múltiples fuentes"""
+    """Obtiene datos críticos de múltiples fuentes oficiales"""
     dataset = {
         'timestamp': datetime.now().isoformat(),
         'sismos': {'max_magnitud': 0, 'ultimo_sismo': None, 'distancia_km': 999},
