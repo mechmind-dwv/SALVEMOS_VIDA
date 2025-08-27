@@ -40,15 +40,15 @@ class AlertManager:
         'nivel_marea': 2.5,     # metros
         'cosmic_risk': 0.3      # 30% aumento riesgo
    }
-      def __init__(self):
-    self.conciencia = ConcienciaUniversal()
-    self.meditador = MeditacionTecnica()
-    print(self.conciencia.crear())
+     def __init__(self):
+      self.conciencia = ConcienciaUniversal()
+      self.meditador = MeditacionTecnica()
+       print(self.conciencia.crear())
     
-    # Meditación rápida al iniciar
-    self.meditador.meditacion_rapida(1)
+      # Meditación rápida al iniciar
+      self.meditador.meditacion_rapida(1)
 
-      def check_alertas(self, data):
+    def check_alertas(self, data):
 
         """🔍 Verifica si se superan los umbrales de alerta con conciencia"""
         alertas = []
