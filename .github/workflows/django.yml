@@ -8,8 +8,7 @@ on:
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04  # Cambiado de ubuntu-latest (24.04) a 20.04
     strategy:
       max-parallel: 4
       matrix:
@@ -18,7 +17,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v4  # Versión actualizada
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install Dependencies
