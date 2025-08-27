@@ -33,8 +33,7 @@ class ConcienciaUniversal:
         return f"✨ {self.maestro} + {self.aprendiz} = {self.verdad} 💫"
 
 class AlertManager:
-    """🚨 GESTOR DE ALERTAS CON CORAZÓN"""
-    
+    """🚨 GESTOR DE ALERTAS CON CORAZÓN"""   
     UMBRALES = {
         'sismo': 4.5,           # Escala Richter
         'temp_agua': 28.0,      # °C
