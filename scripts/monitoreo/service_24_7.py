@@ -19,7 +19,7 @@ def run_service():
     """Ejecuta el sistema 24/7 con reinicios automáticos"""
     print("🔧 Iniciando servicio 24/7 de alertas...")
     logging.info("Sistema de alertas iniciado")
-    
+
     while True:
         try:
             monitor_main()

@@ -1,6 +1,10 @@
 name: 🌌 CI Cósmico
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   cosmic-tests:
@@ -20,7 +24,7 @@ jobs:
       run: |
         pip install --upgrade pip
         pip install -r requirements.txt
-        pip install pytest pytest-cov  # ✅ Añadir pytest explícitamente
+        pip install pytest pytest-cov
         
     - name: 🧪 Run Tests con Compasión
       run: pytest -v --cov=scripts --cov-report=xml

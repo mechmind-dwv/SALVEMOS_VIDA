@@ -22,28 +22,28 @@ class APIsMejoradas:
                 "https://www.ign.es/web/ign/portal/sis-catalogo-terremotos",
                 "https://www.ign.es/resources/sismologia/ultimosTerremotos.html"
             ]
-            
+
             for url in urls:
                 try:
                     response = requests.get(url, timeout=self.timeout, headers=self.headers)
                     if response.status_code == 200:
                         soup = BeautifulSoup(response.text, 'html.parser')
-                        
+
                         # Buscar cualquier tabla con datos sísmicos
                         tablas = soup.find_all('table')
                         for tabla in tablas:
                             if any(['magnitud' in str(th).lower() for th in tabla.find_all('th')]):
                                 print("✅ Tabla de sismos encontrada en IGN")
                                 return [{'magnitud': 2.5, 'localizacion': 'Golfo de Cádiz'}]  # Ejemplo
-                    
+
                     time.sleep(2)  # Esperar entre intentos
-                    
+
                 except Exception as e:
                     print(f"⚠️ Intento fallido con {url}: {e}")
                     continue
-            
+
             return []
-            
+
         except Exception as e:
             print(f"❌ Error IGN mejorado: {e}")
             return []
@@ -56,23 +56,23 @@ class APIsMejoradas:
                 "https://portus.puertos.es/portussrv/api/estado/1108",  # Puerto alternativo
                 "https://www.puertos.es/es-es/oceanografia/Paginas/portus.aspx"  # Web alternativa
             ]
-            
+
             for fuente in fuentes:
                 try:
                     response = requests.get(fuente, timeout=self.timeout, headers=self.headers)
                     if response.status_code == 200:
                         # Simular datos de marea para Chipiona
                         return {'nivel_actual': 1.8, 'unidad': 'metros'}
-                    
+
                     time.sleep(2)
-                    
+
                 except Exception as e:
                     print(f"⚠️ Fuente {fuente} no disponible: {e}")
                     continue
-            
+
             # Fallback a datos estáticos
             return {'nivel_actual': 1.8, 'unidad': 'metros', 'fuente': 'estático'}
-            
+
         except Exception as e:
             print(f"❌ Error Puertos mejorado: {e}")
             return {'nivel_actual': 1.8}
@@ -82,12 +82,12 @@ class APIsMejoradas:
         try:
             url = "https://www.aemet.es/xml/municipios/localidad_11012.xml"
             response = requests.get(url, timeout=self.timeout, headers=self.headers)
-            
+
             if response.status_code == 200:
                 datos = xmltodict.parse(response.text)
                 temp_max = datos['root']['prediccion']['dia'][0]['temperatura']['maxima']
                 temp_min = datos['root']['prediccion']['dia'][0]['temperatura']['minima']
-                
+
                 return {
                     'temperatura': {
                         'maxima': int(temp_max),
@@ -104,7 +104,7 @@ class APIsMejoradas:
                     'ciudad': 'Chipiona',
                     'fuente': 'fallback'
                 }
-                
+
         except Exception as e:
             print(f"❌ Error AEMET mejorado: {e}")
             return {
@@ -117,9 +117,9 @@ class APIsMejoradas:
 if __name__ == "__main__":
     print("🧪 PROBANDO APIs MEJORADAS")
     print("=" * 30)
-    
+
     apis = APIsMejoradas()
-    
+
     print("🌍 IGN:", apis.obtener_datos_ign_mejorado())
     print("🌊 Puertos:", apis.obtener_datos_puertos_mejorado())
     print("🌤️ AEMET:", apis.obtener_datos_aemet_mejorado())
