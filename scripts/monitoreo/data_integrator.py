@@ -14,7 +14,7 @@ class DataFetcher:
         'sismos_usgs': 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson'
     }
 
-    def fetch_data(self):
+ def fetch_data(self):
     """Obtiene datos críticos de múltiples fuentes oficiales"""
     dataset = {
         'timestamp': datetime.now().isoformat(),
