@@ -1,15 +1,17 @@
 # scripts/monitoreo/data_integrator.py (versión mejorada)
-import requests
-from datetime import datetime
 import logging
+from datetime import datetime
+
+import requests
+
 
 class DataFetcher:
     def __init__(self):
-        self.logger = logging.getLogger('DataFetcher')
+        self.logger = logging.getLogger("DataFetcher")
         self.API_ENDPOINTS = {
-            'sismos': 'https://www.ign.es/analisis-sismico/ultimos-terremotos',
-            'mareas': 'https://www.ieo.es/api/mareas',
-            'temperatura': 'https://www.ieo.es/sensores/temperatura'
+            "sismos": "https://www.ign.es/analisis-sismico/ultimos-terremotos",
+            "mareas": "https://www.ieo.es/api/mareas",
+            "temperatura": "https://www.ieo.es/sensores/temperatura",
         }
         self.timeout = 15  # Aumentar timeout
 
@@ -21,11 +23,11 @@ class DataFetcher:
                 response = requests.get(url, timeout=self.timeout)
                 response.raise_for_status()
                 dataset[key] = {
-                    'timestamp': datetime.now().isoformat(),
-                    'data': response.json()
+                    "timestamp": datetime.now().isoformat(),
+                    "data": response.json(),
                 }
                 self.logger.info(f"Datos de {key} obtenidos correctamente")
             except requests.exceptions.RequestException as e:
                 self.logger.error(f"Error en {key}: {str(e)}")
-                dataset[key] = {'error': str(e)}
+                dataset[key] = {"error": str(e)}
         return dataset

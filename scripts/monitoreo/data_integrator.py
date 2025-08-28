@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 # scripts/monitoreo/data_integrator.py
 
-import requests
 import json
 from datetime import datetime
-from math import radians, sin, cos, sqrt, atan2
+from math import atan2, cos, radians, sin, sqrt
+
+import requests
+
 from .apis_espanolas import APIsEspanolas
 from .cosmic.geomagnetic_predictor import GeomagneticPredictor
+
 
 class DataFetcher:
     # FUENTES OFICIALES

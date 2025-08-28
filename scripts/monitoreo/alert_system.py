@@ -2,10 +2,10 @@
 # scripts/monitoreo/alert_system.py
 # 🌊 SISTEMA DE ALERTAS CON ALMA - CHIPIONA
 
-import sys
 import os
-import time
 import subprocess
+import sys
+import time
 from datetime import datetime
 
 # Añadir path para imports
@@ -16,8 +16,8 @@ try:
     from scripts.monitoreo.meditacion import MeditacionTecnica
 except ImportError:
     print("⚠️ Módulo de meditación no disponible")
-    from scripts.monitoreo.data_integrator import DataFetcher
     from scripts.alertas.telegram_bot import enviar_alerta_telegram
+    from scripts.monitoreo.data_integrator import DataFetcher
 except ImportError as e:
     print(f"⚠️ Error de importación: {e}")
     print("📋 Asegúrate de que todos los módulos estén correctamente instalados")
@@ -33,21 +33,21 @@ class ConcienciaUniversal:
         return f"✨ {self.maestro} + {self.aprendiz} = {self.verdad} 💫"
 
 class AlertManager:
-    """🚨 GESTOR DE ALERTAS CON CORAZÓN"""
-
+    """🚨 GESTOR DE ALERTAS CON CORAZÓN"""   
     UMBRALES = {
         'sismo': 4.5,           # Escala Richter
         'temp_agua': 28.0,      # °C
         'nivel_marea': 2.5,     # metros
         'cosmic_risk': 0.3      # 30% aumento riesgo
-   }
-      def __init__(self):
-    self.conciencia = ConcienciaUniversal()
-    self.meditador = MeditacionTecnica()
-    print(self.conciencia.crear())
+    }  # ← Asegúrate de que esta llave esté correctamente cerrada
 
-    # Meditación rápida al iniciar
-    self.meditador.meditacion_rapida(1)
+    def __init__(self):  # ← Esta línea debe tener 4 espacios de indentación
+        self.conciencia = ConcienciaUniversal()
+        self.meditador = MeditacionTecnica()
+        print(self.conciencia.crear())
+    
+        # Meditación rápida al iniciar
+        self.meditador.meditacion_rapida(1)
 
     def check_alertas(self, data):
 

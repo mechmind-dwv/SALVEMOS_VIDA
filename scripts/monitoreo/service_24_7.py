@@ -1,19 +1,24 @@
 #!/usr/bin/env python3
 # scripts/monitoreo/service_24_7.py
 
-import sys
 import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-import time
+import sys
+
+sys.path.append(
+    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+)
 import logging
+import time
+
 from scripts.monitoreo.alert_system import main as monitor_main
 
 # Configurar logging
 logging.basicConfig(
-    filename='logs/sistema_alertas.log',
+    filename="logs/sistema_alertas.log",
     level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
+    format="%(asctime)s - %(levelname)s - %(message)s",
 )
+
 
 def run_service():
     """Ejecuta el sistema 24/7 con reinicios automáticos"""
@@ -27,6 +32,7 @@ def run_service():
             logging.error(f"Error en sistema: {e}")
             print(f"⚠️ Error: {e}. Reiniciando en 30 segundos...")
             time.sleep(30)
+
 
 if __name__ == "__main__":
     run_service()

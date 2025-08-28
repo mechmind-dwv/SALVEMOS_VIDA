@@ -1,17 +1,19 @@
 #!/usr/bin/env python3
 # scripts/monitoreo/apis_mejoradas.py
 
+import time
+from datetime import datetime
+
 import requests
 import xmltodict
 from bs4 import BeautifulSoup
-from datetime import datetime
-import time
+
 
 class APIsMejoradas:
     def __init__(self):
         self.timeout = 15
         self.headers = {
-            'User-Agent': 'SalvemosVidasChipiona/1.0 (https://github.com/mechmind-dwv/SALVEMOS_VIDA)'
+            "User-Agent": "SalvemosVidasChipiona/1.0 (https://github.com/mechmind-dwv/SALVEMOS_VIDA)"
         }
 
     def obtener_datos_ign_mejorado(self):
@@ -20,21 +22,30 @@ class APIsMejoradas:
             # Intentar diferentes URLs del IGN
             urls = [
                 "https://www.ign.es/web/ign/portal/sis-catalogo-terremotos",
-                "https://www.ign.es/resources/sismologia/ultimosTerremotos.html"
+                "https://www.ign.es/resources/sismologia/ultimosTerremotos.html",
             ]
 
             for url in urls:
                 try:
-                    response = requests.get(url, timeout=self.timeout, headers=self.headers)
+                    response = requests.get(
+                        url, timeout=self.timeout, headers=self.headers
+                    )
                     if response.status_code == 200:
-                        soup = BeautifulSoup(response.text, 'html.parser')
+                        soup = BeautifulSoup(response.text, "html.parser")
 
                         # Buscar cualquier tabla con datos sísmicos
-                        tablas = soup.find_all('table')
+                        tablas = soup.find_all("table")
                         for tabla in tablas:
-                            if any(['magnitud' in str(th).lower() for th in tabla.find_all('th')]):
+                            if any(
+                                [
+                                    "magnitud" in str(th).lower()
+                                    for th in tabla.find_all("th")
+                                ]
+                            ):
                                 print("✅ Tabla de sismos encontrada en IGN")
-                                return [{'magnitud': 2.5, 'localizacion': 'Golfo de Cádiz'}]  # Ejemplo
+                                return [
+                                    {"magnitud": 2.5, "localizacion": "Golfo de Cádiz"}
+                                ]  # Ejemplo
 
                     time.sleep(2)  # Esperar entre intentos
 
@@ -54,15 +65,17 @@ class APIsMejoradas:
             # Fuentes alternativas para mareas
             fuentes = [
                 "https://portus.puertos.es/portussrv/api/estado/1108",  # Puerto alternativo
-                "https://www.puertos.es/es-es/oceanografia/Paginas/portus.aspx"  # Web alternativa
+                "https://www.puertos.es/es-es/oceanografia/Paginas/portus.aspx",  # Web alternativa
             ]
 
             for fuente in fuentes:
                 try:
-                    response = requests.get(fuente, timeout=self.timeout, headers=self.headers)
+                    response = requests.get(
+                        fuente, timeout=self.timeout, headers=self.headers
+                    )
                     if response.status_code == 200:
                         # Simular datos de marea para Chipiona
-                        return {'nivel_actual': 1.8, 'unidad': 'metros'}
+                        return {"nivel_actual": 1.8, "unidad": "metros"}
 
                     time.sleep(2)
 
@@ -71,11 +84,11 @@ class APIsMejoradas:
                     continue
 
             # Fallback a datos estáticos
-            return {'nivel_actual': 1.8, 'unidad': 'metros', 'fuente': 'estático'}
+            return {"nivel_actual": 1.8, "unidad": "metros", "fuente": "estático"}
 
         except Exception as e:
             print(f"❌ Error Puertos mejorado: {e}")
-            return {'nivel_actual': 1.8}
+            return {"nivel_actual": 1.8}
 
     def obtener_datos_aemet_mejorado(self):
         """Versión mejorada para AEMET"""
@@ -85,33 +98,38 @@ class APIsMejoradas:
 
             if response.status_code == 200:
                 datos = xmltodict.parse(response.text)
-                temp_max = datos['root']['prediccion']['dia'][0]['temperatura']['maxima']
-                temp_min = datos['root']['prediccion']['dia'][0]['temperatura']['minima']
+                temp_max = datos["root"]["prediccion"]["dia"][0]["temperatura"][
+                    "maxima"
+                ]
+                temp_min = datos["root"]["prediccion"]["dia"][0]["temperatura"][
+                    "minima"
+                ]
 
                 return {
-                    'temperatura': {
-                        'maxima': int(temp_max),
-                        'minima': int(temp_min),
-                        'actual': (int(temp_max) + int(temp_min)) // 2
+                    "temperatura": {
+                        "maxima": int(temp_max),
+                        "minima": int(temp_min),
+                        "actual": (int(temp_max) + int(temp_min)) // 2,
                     },
-                    'ciudad': 'Chipiona',
-                    'actualizado': datetime.now().isoformat()
+                    "ciudad": "Chipiona",
+                    "actualizado": datetime.now().isoformat(),
                 }
             else:
                 # Fallback por si AEMET falla
                 return {
-                    'temperatura': {'maxima': 27, 'minima': 22, 'actual': 24},
-                    'ciudad': 'Chipiona',
-                    'fuente': 'fallback'
+                    "temperatura": {"maxima": 27, "minima": 22, "actual": 24},
+                    "ciudad": "Chipiona",
+                    "fuente": "fallback",
                 }
 
         except Exception as e:
             print(f"❌ Error AEMET mejorado: {e}")
             return {
-                'temperatura': {'maxima': 27, 'minima': 22, 'actual': 24},
-                'ciudad': 'Chipiona',
-                'fuente': 'error_fallback'
+                "temperatura": {"maxima": 27, "minima": 22, "actual": 24},
+                "ciudad": "Chipiona",
+                "fuente": "error_fallback",
             }
+
 
 # Probar APIs mejoradas
 if __name__ == "__main__":
