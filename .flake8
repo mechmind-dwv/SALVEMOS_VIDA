@@ -1,9 +1,5 @@
 [flake8]
 max-line-length = 88
-extend-ignore = 
-    E203,  # Espacio antes de ':'
-    C901,   # Complejidad ciclomática
-    W293,   # Espacios en blanco
-    F401    # Importaciones no utilizadas
+extend-ignore = E203, C901, W293, F401
 per-file-ignores =
     __init__.py:F401
