@@ -3,7 +3,7 @@ max-line-length = 88
 extend-ignore = 
     E203,  # Espacio antes de ':'
     C901,   # Complejidad ciclomática
-    W293,   # Espacios en blanco (corregir manualmente)
+    W293,   # Espacios en blanco
     F401    # Importaciones no utilizadas
 per-file-ignores =
     __init__.py:F401
