@@ -11,10 +11,13 @@ jobs:
     name: 🧪 Tests con Amor
     runs-on: ubuntu-latest
     
-    steps:
+   steps:
+    - name: 📏 Run Flake8 con Compasión
+       run: flake8 scripts/ --max-line-length=88 --extend-ignore=E203,C901,W293,F401
+
     - name: 💖 Checkout con Amor
       uses: actions/checkout@v4
-      
+    
     - name: 🐍 Setup Python con Alma
       uses: actions/setup-python@v4
       with:
