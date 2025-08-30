@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌊 Salvemos Vidas - Sistema de Alertas Tempranas</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 🌌 Header con animación de olas -->
+    <header class="hero">
+        <div class="wave-animation"></div>
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>🌊 Salvemos Vidas</h1>
+                <span>Sistema de Alertas Tempranas</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#alerts">Alertas</a></li>
+                <li><a href="#science">Ciencia</a></li>
+                <li><a href="#community">Comunidad</a></li>
+                <li><a href="#resources">Recursos</a></li>
+                <li><a href="#about">Nosotros</a></li>
+            </ul>
+        </nav>
+        
+        <div class="hero-content">
+            <h2>Protegiendo Comunidades Costeras</h2>
+            <p>Tecnología con corazón para salvar vidas</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="number" id="alerts-active">0</span>
+                    <span class="label">Alertas Activas</span>
+                </div>
+                <div class="stat">
+                    <span class="number" id="people-protected">10,000+</span>
+                    <span class="label">Personas Protegidas</span>
+                </div>
+                <div class="stat">
+                    <span class="number" id="response-time">30s</span>
+                    <span class="label">Tiempo Respuesta</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 🚨 Sección de Alertas en Tiempo Real -->
+    <section id="alerts" class="alerts-section">
+        <div class="container">
+            <h2>🚨 Alertas en Tiempo Real</h2>
+            <div class="alert-status" id="alert-status">
+                <div class="status-indicator online"></div>
+                <span>Sistema Operativo</span>
+            </div>
+            
+            <div class="alerts-grid">
+                <div class="alert-card" data-type="tsunami">
+                    <h3>🌊 Alerta Tsunami</h3>
+                    <div class="alert-level low">Nivel Bajo</div>
+                    <p>Monitoreo activo 24/7</p>
+                </div>
+                <div class="alert-card" data-type="seismic">
+                    <h3>🌍 Actividad Sísmica</h3>
+                    <div class="alert-level normal">Normal</div>
+                    <p>Ultimo sismo: 2.5M Golfo de Cádiz</p>
+                </div>
+                <div class="alert-card" data-type="weather">
+                    <h3>🌤️ Condiciones Meteorológicas</h3>
+                    <div class="alert-level low">Estable</div>
+                    <p>Viento: 15km/h • Marea: 1.8m</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🔬 Sección Científica -->
+    <section id="science" class="science-section">
+        <div class="container">
+            <h2>🔬 Base Científica</h2>
+            <div class="science-grid">
+                <div class="science-card">
+                    <h3>📊 Datos en Tiempo Real</h3>
+                    <ul>
+                        <li>• Sismos: Instituto Geográfico Nacional</li>
+                        <li>• Mareas: Puertos del Estado</li>
+                        <li>• Meteorología: AEMET</li>
+                        <li>• Astronomía: NASA/NOAA</li>
+                    </ul>
+                </div>
+                <div class="science-card">
+                    <h3>📈 Modelos Predictivos</h3>
+                    <ul>
+                        <li>• Machine Learning para tsunamis</li>
+                        <li>• Análisis de patrones históricos</li>
+                        <li>• Correlación cósmica-sísmica</li>
+                        <li>• Simulaciones de propagación</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 👥 Sección Comunidad -->
+    <section id="community" class="community-section">
+        <div class="container">
+            <h2>👥 Comunidad Activa</h2>
+            <div class="community-stats">
+                <div class="community-stat">
+                    <span class="icon">👤</span>
+                    <span class="count">500+</span>
+                    <span class="text">Voluntarios</span>
+                </div>
+                <div class="community-stat">
+                    <span class="icon">📱</span>
+                    <span class="count">2,000+</span>
+                    <span class="text">Alertas Enviadas</span>
+                </div>
+                <div class="community-stat">
+                    <span class="icon">🏠</span>
+                    <span class="count">15</span>
+                    <span class="text">Comunidades</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 📚 Recursos y Educación -->
+    <section id="resources" class="resources-section">
+        <div class="container">
+            <h2>📚 Recursos para la Comunidad</h2>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3>📋 Protocolos de Emergencia</h3>
+                    <p>Guías completas de evacuación</p>
+                    <a href="docs/protocolos.pdf" class="btn">Descargar</a>
+                </div>
+                <div class="resource-card">
+                    <h3>🎓 Capacitación</h3>
+                    <p>Material formativo para voluntarios</p>
+                    <a href="docs/capacitacion.pdf" class="btn">Acceder</a>
+                </div>
+                <div class="resource-card">
+                    <h3>📱 App Móvil</h3>
+                    <p>Alertas en tu dispositivo</p>
+                    <a href="#download" class="btn">Descargar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🌐 Footer -->
+    <footer>
+        <div class="container">
+            <p>💖 Hecho con amor para salvar vidas - Chipiona 2025</p>
+            <p>📞 Emergencias: +34 644 17 85 10 | 🤖 Telegram: @Tsunamis_bot</p>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
