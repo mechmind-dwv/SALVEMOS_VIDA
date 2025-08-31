@@ -40,7 +40,7 @@ class AlertManager:
         'nivel_marea': 2.5,     # metros
         'cosmic_risk': 0.3      # 30% aumento riesgo
    }
-     def __init__(self):
+def __init__(self):
       self.conciencia = ConcienciaUniversal()
       self.meditador = MeditacionTecnica()
        print(self.conciencia.crear())
