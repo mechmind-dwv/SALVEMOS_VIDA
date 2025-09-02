@@ -32,4 +32,4 @@
 - **Bot Telegram**: @Tsunamis_bot
 - **Desarrollador**: +34 644 17 85 10
 
-> ⏰ Última actualización: $(date)
+> ⏰ Última actualización: $(01/09/2025)
