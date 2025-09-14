@@ -6,6 +6,7 @@ import json
 from datetime import datetime
 from math import radians, sin, cos, sqrt, atan2
 from .apis_espanolas import APIsEspanolas
+from .cosmic.geomagnetic_predictor import GeomagneticPredictor
 
 class DataFetcher:
     # FUENTES OFICIALES
@@ -13,15 +14,16 @@ class DataFetcher:
         'sismos_usgs': 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson'
     }
 
-    def fetch_data(self):
-        """Obtiene datos críticos de múltiples fuentes oficiales"""
-        dataset = {
-            'timestamp': datetime.now().isoformat(),
-            'sismos': {'max_magnitud': 0, 'ultimo_sismo': None, 'distancia_km': 999},
-            'mareas': {'nivel_actual': 1.8, 'tendencia': 'estable'},
-            'temperatura': {'valor': 22.5, 'alerta_termica': False},
-            'viento': {'velocidad_kmh': 12, 'direccion': 'N'}
-        }
+ def fetch_data(self):
+    """Obtiene datos críticos de múltiples fuentes oficiales"""
+    dataset = {
+        'timestamp': datetime.now().isoformat(),
+        'sismos': {'max_magnitud': 0, 'ultimo_sismo': None, 'distancia_km': 999},
+        'mareas': {'nivel_actual': 1.8, 'tendencia': 'estable'},
+        'temperatura': {'valor': 22.5, 'alerta_termica': False},
+        'viento': {'velocidad_kmh': 12, 'direccion': 'N'},
+        'cosmic': {}  # Nuevo: datos cósmicos
+    }
         
         # DATOS DE SISMOS (USGS)
         try:
@@ -49,13 +51,23 @@ class DataFetcher:
                 
                 if magnitudes:
                     dataset['sismos']['max_magnitud'] = max(magnitudes)
-                    
-        except Exception as e:
-            print(f"⚠️ Error obteniendo sismos: {str(e)}")
-            # Datos de ejemplo
-            dataset['sismos']['max_magnitud'] = 2.5
-        
-        return dataset
+           
+        # AÑADIR DATOS CÓSMICOS
+    try:
+        cosmic_predictor = GeomagneticPredictor()
+        space_data = cosmic_predictor.fetch_space_weather()
+        dataset['cosmic'] = {
+            'kp_index': space_data['kp_index'],
+            'solar_wind': space_data['solar_wind_speed'],
+            'proton_flux': space_data['proton_flux'],
+            'alert_count': len(space_data['alerts']),
+            'tsunami_risk_increase': cosmic_predictor.assess_tsunami_risk(space_data)
+        }
+    except Exception as e:
+        print(f"⚠️ Error datos cósmicos: {e}")
+        dataset['cosmic'] = {'error': str(e)}
+    
+    return dataset
 
     def _calcular_distancia(self, lat1, lon1, lat2, lon2):
         """Calcula distancia entre dos puntos GPS (km)"""

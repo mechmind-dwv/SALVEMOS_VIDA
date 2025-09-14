@@ -1,0 +1,38 @@
+name: 🌌 CI Cósmico
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  cosmic-tests:
+    name: 🧪 Tests con Amor
+    runs-on: ubuntu-latest
+    
+   steps:
+    - name: 📏 Run Flake8 con Compasión
+       run: flake8 scripts/ --max-line-length=88 --extend-ignore=E203,C901,W293,F401
+
+    - name: 💖 Checkout con Amor
+      uses: actions/checkout@v4
+    
+    - name: 🐍 Setup Python con Alma
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        
+    - name: 📦 Install Dependencies con Amor
+      run: |
+        pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install pytest pytest-cov
+        
+    - name: 🧪 Run Tests con Compasión
+      run: pytest -v --cov=scripts --cov-report=xml
+      env:
+        PYTHONPATH: ${{ github.workspace }}
+        
+    - name: 📊 Upload Coverage con Amor
+      uses: codecov/codecov-action@v3

@@ -1,20 +1,24 @@
 ---
-name: Feature request
-about: Suggest an idea for this project
-title: ''
-labels: ''
-assignees: ''
-
+name: "💝 Solicitud de Función con Alma"
+about: Sugiere una nueva función con propósito
+title: "💝 [Área]: Función amorosa"
+labels: "enhancement, amor"
+assignees: ""
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+## 🌈 Función con Propósito
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+### 💖 Descripción del Alma
+[Describe la función con amor y claridad]
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+### 🧘 ¿Por qué es importante?
+[Explica el propósito con compasión]
 
-**Additional context**
-Add any other context or screenshots about the feature request here.
+### 🎯 Solución Propuesta
+[Describe la solución con amor]
+
+### 🌟 Alternativas Consideradas
+[Otras opciones con compasión]
+
+### 📚 Contexto Adicional
+[Información adicional con amor]

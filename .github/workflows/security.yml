@@ -4,9 +4,12 @@ on: [push, pull_request]
 jobs:
   bandit-scan:
     runs-on: ubuntu-latest
+    permissions:
+      security-events: write  # Necesario para reportar resultados
+      contents: read
     steps:
       - uses: actions/checkout@v4
-      - name: Run Bandit
-        uses: PyCQA/bandit@main
+      - name: Run Bandit Security Scan
+        uses: PyCQA/bandit-action@v1  # Acción correcta para Bandit
         with:
-          args: "-r ./scripts/ -ll"
+          args: "-r ./scripts/ -ll"   # Argumentos para Bandit
