@@ -19,9 +19,6 @@ jobs:
     - name: 📦 Install Dependencies con Amor
       run: pip install -r requirements.txt
       
-    - name: 🔧 Install Testing Tools
-      run: pip install pytest pytest-cov  # Añade esta línea
-      
     - name: 🧪 Run Tests con Compasión
       run: pytest -v --cov=scripts --cov-report=xml
       env:
