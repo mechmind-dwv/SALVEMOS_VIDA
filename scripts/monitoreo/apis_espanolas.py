@@ -18,7 +18,6 @@ class APIsEspanolas:
             # Buscar tabla de terremotos recientes
             terremotos = []
             tabla = soup.find("table", {"class": "tabla-terremotos"})
-
             if tabla:
                 for fila in tabla.find_all("tr")[1:6]:  # Últimos 5 terremotos
                     celdas = fila.find_all("td")

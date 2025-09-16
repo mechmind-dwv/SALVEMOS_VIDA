@@ -24,23 +24,23 @@ class DataFetcher:
         'viento': {'velocidad_kmh': 12, 'direccion': 'N'},
         'cosmic': {}  # Nuevo: datos cósmicos
     }
-        
+
         # DATOS DE SISMOS (USGS)
         try:
             response = requests.get(self.API_ENDPOINTS['sismos_usgs'], timeout=10)
             sismos_data = response.json()
-            
+
             if sismos_data['features']:
                 magnitudes = []
                 for quake in sismos_data['features']:
                     if quake['properties']['mag'] is not None:
                         magnitudes.append(quake['properties']['mag'])
-                        
+
                         # Calcular distancia a Chipiona (36.7360° N, 6.4376° W)
                         quake_lat = quake['geometry']['coordinates'][1]
                         quake_lon = quake['geometry']['coordinates'][0]
                         distancia = self._calcular_distancia(36.7360, -6.4376, quake_lat, quake_lon)
-                        
+
                         if distancia < 300:
                             dataset['sismos']['ultimo_sismo'] = {
                                 'magnitud': quake['properties']['mag'],
@@ -48,10 +48,10 @@ class DataFetcher:
                                 'lugar': quake['properties']['place'],
                                 'timestamp': datetime.fromtimestamp(quake['properties']['time']/1000).isoformat()
                             }
-                
+
                 if magnitudes:
                     dataset['sismos']['max_magnitud'] = max(magnitudes)
-           
+
         # AÑADIR DATOS CÓSMICOS
     try:
         cosmic_predictor = GeomagneticPredictor()
@@ -66,20 +66,20 @@ class DataFetcher:
     except Exception as e:
         print(f"⚠️ Error datos cósmicos: {e}")
         dataset['cosmic'] = {'error': str(e)}
-    
+
     return dataset
 
     def _calcular_distancia(self, lat1, lon1, lat2, lon2):
         """Calcula distancia entre dos puntos GPS (km)"""
         R = 6371  # Radio de la Tierra en km
-        
+
         lat1, lon1, lat2, lon2 = map(radians, [lat1, lon1, lat2, lon2])
         dlat = lat2 - lat1
         dlon = lon2 - lon1
-        
+
         a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
         c = 2 * atan2(sqrt(a), sqrt(1-a))
-        
+
         return R * c
 
 # Prueba rápida

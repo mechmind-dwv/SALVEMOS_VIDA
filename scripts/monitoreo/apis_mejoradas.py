@@ -73,7 +73,6 @@ class APIsMejoradas:
                         fuente, timeout=self.timeout, headers=self.headers
                     )
                     if response.status_code == 200:
-                        # Simular datos de marea para Chipiona
                         return {"nivel_actual": 1.8, "unidad": "metros"}
 
                     time.sleep(2)
@@ -82,7 +81,7 @@ class APIsMejoradas:
                     print(f"⚠️ Fuente {fuente} no disponible: {e}")
                     continue
 
-            # Fallback a datos estáticos
+           # Fallback a datos estáticos
             return {"nivel_actual": 1.8, "unidad": "metros", "fuente": "estático"}
 
         except Exception as e:
