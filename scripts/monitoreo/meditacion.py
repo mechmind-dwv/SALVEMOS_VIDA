@@ -8,6 +8,7 @@ from datetime import datetime
 import sys
 import os
 
+
 class MeditacionTecnica:
     """🌌 Clase para meditación técnica consciente"""
 
@@ -22,7 +23,7 @@ class MeditacionTecnica:
             "✨ Soy un canal de código consciente",
             "🌙 Mi trabajo tiene impacto real",
             "⭐ Programo con amor y atención",
-            "🌈 La tecnología sirve a la humanidad"
+            "🌈 La tecnología sirve a la humanidad",
         ]
 
         self.respiraciones = [
@@ -30,17 +31,17 @@ class MeditacionTecnica:
             "Respiración de enfoque consciente",
             "Respiración de propósito profundo",
             "Respiración de compasión técnica",
-            "Respiración de conexión cósmica"
+            "Respiración de conexión cósmica",
         ]
 
     def limpiar_pantalla(self):
         """🧹 Limpia la pantalla con amor"""
-        os.system('cls' if os.name == 'nt' else 'clear')
+        os.system("cls" if os.name == "nt" else "clear")
 
     def mostrar_arte_ascii(self, tipo):
         """🎨 Muestra arte ASCII con propósito"""
         artes = {
-            'inicio': r"""
+            "inicio": r"""
     🌌💻🌌💻🌌💻🌌💻🌌💻🌌💻🌌
     💻                            💻
     🌌   MEDITACIÓN TÉCNICA CON   🌌
@@ -48,9 +49,8 @@ class MeditacionTecnica:
     🌌                            🌌
     💻🌌💻🌌💻🌌💻🌌💻🌌💻🌌💻🌌💻
             """,
-
-            'corazon': r"""
-     ______ ______
+            "corazon": r"""
+     ______ ______ 
     |  ____|  ____|
     | |__  | |__
     |  __| |  __|
@@ -59,8 +59,7 @@ class MeditacionTecnica:
 
     💖 Corazón + Código = Magia 💖
             """,
-
-            'loto': r"""
+            "loto": r"""
        ______
      /        \
     /    🌸    \
@@ -70,9 +69,9 @@ class MeditacionTecnica:
       \______/
 
     🧘 Mente tranquila, código claro
-            """
+            """,
         }
-        print(artes.get(tipo, artes['inicio']))
+        print(artes.get(tipo, artes["inicio"]))
 
     def animar_respiracion(self, duracion=60):
         """🌬️ Animación de respiración consciente"""
@@ -96,7 +95,7 @@ class MeditacionTecnica:
     def meditacion_rapida(self, minutos=1):
         """⏱️ Meditación rápida de 1 minuto"""
         self.limpiar_pantalla()
-        self.mostrar_arte_ascii('inicio')
+        self.mostrar_arte_ascii("inicio")
 
         print(f"\n🧘 MEDITACIÓN RÁPIDA ({minutos} minuto)")
         print("=" * 40)
@@ -127,7 +126,7 @@ class MeditacionTecnica:
     def meditacion_completa(self, minutos=5):
         """🌌 Meditación técnica completa"""
         self.limpiar_pantalla()
-        self.mostrar_arte_ascii('corazon')
+        self.mostrar_arte_ascii("corazon")
 
         print(f"\n🧘‍♂️ MEDITACIÓN COMPLETA ({minutos} minutos)")
         print("=" * 50)
@@ -137,7 +136,7 @@ class MeditacionTecnica:
             ("💖 PROPÓSITO DEL CÓDIGO", 60),
             ("🧠 CLARIDAD MENTAL", 60),
             ("🌍 CONEXIÓN COMUNITARIA", 60),
-            ("🚀 INTENCIÓN DE IMPACTO", 60)
+            ("🚀 INTENCIÓN DE IMPACTO", 60),
         ]
 
         for fase, duracion in fases:
@@ -152,7 +151,7 @@ class MeditacionTecnica:
     def meditacion_emergencia(self):
         """🚨 Meditación rápida para momentos de estrés"""
         self.limpiar_pantalla()
-        self.mostrar_arte_ascii('loto')
+        self.mostrar_arte_ascii("loto")
 
         print("\n🆘 MEDITACIÓN DE EMERGENCIA")
         print("=" * 35)
@@ -184,7 +183,7 @@ class MeditacionTecnica:
             "¿Documenté con amor?",
             "¿Probé con atención plena?",
             "¿Mantengo la compasión?",
-            "¿Recuerdo el propósito superior?"
+            "¿Recuerdo el propósito superior?",
         ]
 
         print("\n🤔 PREGUNTAS CONSCIENTES PARA REFLEXIÓN:")
@@ -195,6 +194,7 @@ class MeditacionTecnica:
         print("\n💖 Toma 1 minuto para reflexionar...")
         time.sleep(60)
         print("✅ Reflexión completada")
+
 
 def main():
     """🎯 Función principal de meditación técnica"""
@@ -214,15 +214,15 @@ def main():
 
         opcion = input("\n💫 Elige una opción (1-5): ").strip()
 
-        if opcion == '1':
+        if opcion == "1":
             meditador.meditacion_rapida()
-        elif opcion == '2':
+        elif opcion == "2":
             meditador.meditacion_completa()
-        elif opcion == '3':
+        elif opcion == "3":
             meditador.meditacion_emergencia()
-        elif opcion == '4':
+        elif opcion == "4":
             meditador.preguntas_conscientes()
-        elif opcion == '5':
+        elif opcion == "5":
             print("\n💖 Gracias por meditar. Hasta pronto.")
             print("✨ Que tu código esté lleno de amor y propósito.")
             break
@@ -231,6 +231,7 @@ def main():
 
         input("\n📍 Presiona Enter para continuar...")
         meditador.limpiar_pantalla()
+
 
 if __name__ == "__main__":
     try:
